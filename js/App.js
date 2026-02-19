@@ -6,6 +6,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingOverlay = document.getElementById('loadingOverlay');
 
     let processedImageData = null;
+    let currentDay = '';
+
+    const CUSTOMERS = {
+        "Tuesday": ["FATE", "スコップ", "シーサイド", "サンロード", "ルテラ", "セナ", "クプラ", "KOZY", "Pブランズ長住", "カド"],
+        "Wednesday": ["リッシュヘアー", "ピーブランズヘア大野城", "ピーブランズヘア春日", "アリー", "スタイリー", "ベルリアージュ", "クレア", "リズム", "ひとみ美容室", "プラント", "出張理美容", "アトリコ", "7ベルベット", "コージーベルベット", "AVE", "THREE", "ere", "Drop by drop", "ベルベット", "リコラ", "クプラ"],
+        "Thursday": ["リブロ", "HALS hair place", "luck", "KOZY", "クプラ", "NATTY", "Pブランズ姪浜", "Hui", "ルテラ", "トルソー", "nook", "シーサイド"],
+        "Friday": ["Lilly", "ホロホロヘアー", "Salon COCO", "Amber.", "Luxe", "クラーク", "ミツアミ堂", "LACO hair", "ベルベット千早", "プレアー", "ストロベリー"]
+    };
+
+    const dayBtns = document.querySelectorAll('.day-btn');
+    const customerSelect = document.getElementById('storeName');
+    const customerContainer = document.getElementById('customer-container');
+
+    dayBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            currentDay = e.target.dataset.day;
+
+            dayBtns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+
+            customerSelect.innerHTML = '<option value="">サロンを選択してください</option>';
+            CUSTOMERS[currentDay].forEach(name => {
+                const opt = document.createElement('option');
+                opt.value = name;
+                opt.textContent = name;
+                customerSelect.appendChild(opt);
+            });
+
+            customerContainer.classList.add('visible');
+        });
+    });
 
     // カメラボタンのクリック
     document.querySelector('.camera-btn').addEventListener('click', () => {
@@ -33,13 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const storeName = document.getElementById('storeName').value;
         const reportText = document.getElementById('reportText').value;
 
-        if (!storeName || !reportText) {
-            alert('店名と報告内容は必須です。');
+        if (!currentDay || !storeName || !reportText) {
+            alert('訪問曜日、得意先、報告内容は必須です。');
             return;
         }
 
         const data = {
             timestamp: new Date().toISOString(),
+            day: currentDay,
             storeName,
             reportText,
             image: processedImageData // Base64
@@ -64,6 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
             reportForm.reset();
             previewContainer.innerHTML = '';
             processedImageData = null;
+            dayBtns.forEach(b => b.classList.remove('active'));
+            customerContainer.classList.remove('visible');
+            currentDay = '';
 
         } catch (error) {
             console.error('Error:', error);

@@ -27,8 +27,20 @@
         <main class="card">
             <form id="reportForm">
                 <div class="form-group">
-                    <label for="storeName"><i class="bi bi-shop"></i> 店名</label>
-                    <input type="text" id="storeName" placeholder="訪問した店舗名を入力" required>
+                    <label><i class="bi bi-calendar2-check"></i> 訪問曜日を選択</label>
+                    <div class="day-grid">
+                        <button type="button" class="day-btn" data-day="Tuesday">火曜日</button>
+                        <button type="button" class="day-btn" data-day="Wednesday">水曜日</button>
+                        <button type="button" class="day-btn" data-day="Thursday">木曜日</button>
+                        <button type="button" class="day-btn" data-day="Friday">金曜日</button>
+                    </div>
+                </div>
+
+                <div class="form-group" id="customer-container" style="display: none;">
+                    <label for="storeName"><i class="bi bi-shop"></i> 得意先を選択</label>
+                    <select id="storeName" required>
+                        <option value="">サロンを選択してください</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
