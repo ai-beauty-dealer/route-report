@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentDay = '';
 
     const CUSTOMERS = {
-        "Tuesday": ["FATE", "スコップ", "シーサイド", "サンロード", "ルテラ", "セナ", "クプラ", "KOZY", "Pブランズ長住", "カド"],
+        "Tuesday": ["FATE", "スコップ", "スタンダード"],
         "Wednesday": ["リッシュヘアー", "ピーブランズヘア大野城", "ピーブランズヘア春日", "アリー", "スタイリー", "ベルリアージュ", "クレア", "リズム", "ひとみ美容室", "プラント", "出張理美容", "アトリコ", "7ベルベット", "コージーベルベット", "AVE", "THREE", "ere", "Drop by drop", "ベルベット", "リコラ", "クプラ"],
         "Thursday": ["リブロ", "HALS hair place", "luck", "KOZY", "クプラ", "NATTY", "Pブランズ姪浜", "Hui", "ルテラ", "トルソー", "nook", "シーサイド"],
         "Friday": ["Lilly", "ホロホロヘアー", "Salon COCO", "Amber.", "Luxe", "クラーク", "ミツアミ堂", "LACO hair", "ベルベット千早", "プレアー", "ストロベリー"]
