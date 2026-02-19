@@ -70,11 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const data = {
-            timestamp: new Date().toISOString(),
+            date: new Date().toLocaleDateString('ja-JP'), // For sheet tab name
             day: currentDay,
-            storeName,
-            reportText,
-            image: processedImageData // Base64
+            customer: storeName,
+            comment: reportText,
+            image: processedImageData // Base64 (currently not handled by backend, but sent anyway)
         };
 
         // UI更新
