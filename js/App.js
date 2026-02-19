@@ -12,12 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         "Tuesday": ["FATE", "スコップ", "スタンダード"],
         "Wednesday": ["リッシュヘアー", "ピーブランズヘア大野城", "ピーブランズヘア春日", "アリー", "スタイリー", "ベルリアージュ", "クレア", "リズム", "ひとみ美容室", "プラント", "出張理美容", "アトリコ", "7ベルベット", "コージーベルベット", "AVE", "THREE", "ere", "Drop by drop", "ベルベット", "リコラ", "ワンネス"],
         "Thursday": ["リブロ", "HALS hair place", "luck", "KOZY", "クプラ", "NATTY", "Pブランズ姪浜", "Hui", "ルテラ", "トルソー", "nook", "シーサイド", "KUKUI"],
-        "Friday": ["Lilly", "ホロホロヘアー", "Salon COCO", "Amber.", "Luxe", "クラーク", "ミツアミ堂", "LACO hair", "ベルベット千早", "プレアー", "ストロベリー"]
+        "Friday": ["Lilly", "ホロホロヘアー", "Salon COCO", "Amber.", "Luxe", "クラーク", "ミツアミ堂", "LACO hair", "ベルベット千早", "プレアー", "ストロベリー", "シエララグゼ", "ロブレ", "プアヒール"]
     };
 
     const dayBtns = document.querySelectorAll('.day-btn');
     const customerSelect = document.getElementById('storeName');
     const customerContainer = document.getElementById('customer-container');
+    const customStoreContainer = document.getElementById('custom-store-container');
+    const customStoreInput = document.getElementById('customStoreName');
 
     dayBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -33,9 +35,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 opt.textContent = name;
                 customerSelect.appendChild(opt);
             });
+            // 手入力オプションを追加
+            const otherOpt = document.createElement('option');
+            otherOpt.value = "other";
+            otherOpt.textContent = "その他（直接入力）";
+            customerSelect.appendChild(otherOpt);
 
             customerContainer.classList.add('visible');
+
+            // リセット
+            customStoreContainer.style.display = 'none';
+            customStoreInput.removeAttribute('required');
+            customStoreInput.value = '';
         });
+    });
+
+    // 「その他」が選ばれたらテキスト入力欄を表示
+    customerSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'other') {
+            customStoreContainer.style.display = 'block';
+            customStoreInput.setAttribute('required', 'true');
+        } else {
+            customStoreContainer.style.display = 'none';
+            customStoreInput.removeAttribute('required');
+        }
     });
 
     // カメラボタンのクリック
@@ -61,7 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
     reportForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const storeName = document.getElementById('storeName').value;
+        let storeName = document.getElementById('storeName').value;
+        if (storeName === 'other') {
+            storeName = document.getElementById('customStoreName').value;
+        }
+
         const reportText = document.getElementById('reportText').value;
 
         if (!currentDay || !storeName || !reportText) {
