@@ -63,6 +63,7 @@
                     <p style="font-size: 12px; color: var(--accent-blue); margin-top: 8px; font-weight: 500;">現場を撮影する
                     </p>
                     <div id="previewContainer" class="preview-container"></div>
+                    <div id="statusMessage" class="status-message"></div>
                 </div>
 
                 <button type="submit" id="submitBtn" class="btn-submit">
@@ -70,6 +71,17 @@
                     <i class="bi bi-send btn-text"></i>
                 </button>
             </form>
+
+            <hr style="border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 2rem 0;">
+
+            <div class="export-section" style="text-align: center;">
+                <button type="button" id="exportBtn" class="premium-btn"
+                    style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); width: 100%;">
+                    <i class="bi bi-file-earmark-spreadsheet"></i> 日報を出力（LINEへ送信）
+                </button>
+                <small
+                    style="color: rgba(255,255,255,0.6); display: block; margin-top: 0.5rem;">※当日の日報をまとめて秘書からLINEへ送信します</small>
+            </div>
         </main>
     </div>
 

@@ -145,4 +145,52 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('online', () => {
         submitBtn.disabled = false;
     });
+
+    // 日報出力（LINE送信）ボタン
+    const exportBtn = document.getElementById('exportBtn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', async () => {
+            if (!currentDay) {
+                statusMessage.innerHTML = '<span style="color: #ef4444;"><i class="bi bi-exclamation-triangle"></i> 先に曜日を選択してください</span>';
+                return;
+            }
+
+            // 確認ダイアログ
+            if (!confirm(`当日の日報データを出力して、LINEへ送信します。\nよろしいですか？`)) {
+                return;
+            }
+
+            exportBtn.disabled = true;
+            exportBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> 送信中...';
+            statusMessage.innerHTML = '';
+
+            const today = new Date();
+            const dateStr = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
+
+            const payload = {
+                action: 'exportReport',
+                day: currentDay,
+                date: dateStr
+            };
+
+            try {
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                statusMessage.innerHTML = '<span style="color: #10b981;"><i class="bi bi-check-circle"></i> LINEへ出力指示を送信しました！</span>';
+            } catch (error) {
+                console.error('Export Error:', error);
+                statusMessage.innerHTML = '<span style="color: #ef4444;"><i class="bi bi-x-circle"></i> 送信に失敗しました。</span>';
+            } finally {
+                setTimeout(() => {
+                    exportBtn.disabled = false;
+                    exportBtn.innerHTML = '<i class="bi bi-file-earmark-spreadsheet"></i> 日報を出力（LINEへ送信）';
+                }, 3000);
+            }
+        });
+    }
 });
