@@ -173,13 +173,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 date: dateStr
             };
 
-            const formData = new FormData();
-            formData.append('data', JSON.stringify(payload));
-
             try {
-                const response = await fetch(GAS_URL, {
+                const response = await fetch(Config.GAS_URL, {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(payload)
                 });
 
                 statusMessage.innerHTML = '<span style="color: #10b981;"><i class="bi bi-check-circle"></i> LINEへ出力指示を送信しました！</span>';
