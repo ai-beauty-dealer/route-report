@@ -2,102 +2,22 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ルート日報 | ルート報告ツール</title>
-    <!-- iOS Home Screen Icon -->
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Fonts -->
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URUGAMI SYSTEM | ルート日報入力</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
         rel="stylesheet">
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+  <script type="module" crossorigin src="./assets/index-R45DXroK.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DMVA5B1K.css">
 </head>
 
-<body>
-    <div class="container">
-        <header>
-            <div class="brand-logo">ルート日報</div>
-            <div class="brand-subtitle">Route Report Management</div>
-        </header>
-
-        <main class="card">
-            <form id="reportForm">
-                <div class="form-group">
-                    <label><i class="bi bi-calendar2-check"></i> 訪問曜日を選択</label>
-                    <div class="day-grid">
-                        <button type="button" class="day-btn" data-day="Tuesday">火曜日</button>
-                        <button type="button" class="day-btn" data-day="Wednesday">水曜日</button>
-                        <button type="button" class="day-btn" data-day="Thursday">木曜日</button>
-                        <button type="button" class="day-btn" data-day="Friday">金曜日</button>
-                    </div>
-                </div>
-
-                <div class="form-group" id="customer-container" style="display: none;">
-                    <label for="storeName"><i class="bi bi-shop"></i> 得意先を選択</label>
-                    <select id="storeName" required>
-                        <option value="">サロンを選択してください</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="custom-store-container" style="display: none;">
-                    <label for="customStoreName"><i class="bi bi-pencil-square"></i> サロン名を入力</label>
-                    <input type="text" id="customStoreName" placeholder="サロン名を手入力してください">
-                </div>
-
-                <div class="form-group">
-                    <label for="reportText"><i class="bi bi-chat-left-text"></i> 報告内容</label>
-                    <textarea id="reportText" placeholder="活動内容・コメントを入力..." required></textarea>
-                </div>
-
-                <div class="camera-section">
-                    <input type="file" id="cameraInput" accept="image/*" style="display: none;">
-                    <div class="camera-btn">
-                        <i class="bi bi-images"></i>
-                    </div>
-                    <p style="font-size: 12px; color: var(--accent-blue); margin-top: 8px; font-weight: 500;">
-                        カメラロールから写真をアップロード
-                    </p>
-                    <div id="previewContainer" class="preview-container"></div>
-                    <div id="statusMessage" class="status-message"></div>
-                </div>
-
-                <button type="submit" id="submitBtn" class="btn-submit">
-                    <span class="btn-text">報告を送信する</span>
-                    <i class="bi bi-send btn-text"></i>
-                </button>
-            </form>
-
-            <hr style="border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 2rem 0;">
-
-            <div class="export-section" style="text-align: center;">
-                <button type="button" id="exportBtn" class="premium-btn"
-                    style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); width: 100%;">
-                    <i class="bi bi-file-earmark-spreadsheet"></i> 日報を出力（LINEへ送信）
-                </button>
-                <small
-                    style="color: rgba(255,255,255,0.6); display: block; margin-top: 0.5rem;">※当日の日報をまとめて秘書からLINEへ送信します</small>
-            </div>
-        </main>
-    </div>
-
-    <div id="loadingOverlay">
-        <div class="spinner"></div>
-        <p style="color: var(--primary-bg); font-weight: 700;">送信中...</p>
-    </div>
-
-    <footer>
-        &copy; 2026 2ND BRAIN SYSTEMS
-    </footer>
-
-    <!-- Scripts -->
-    <script src="js/Config.js"></script>
-    <script src="js/App.js"></script>
+<body class="bg-gray-950 text-gray-100 font-sans">
+    <div id="root"></div>
 </body>
 
 </html>
